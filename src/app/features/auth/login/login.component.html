@@ -1,0 +1,53 @@
+<div class="login">
+    <div class="login-container">
+        <div class="form-header">
+            <h1>Welcome back</h1>
+            <p>Sign in to your account</p>
+        </div>
+
+        <div class="form-body">
+            <!-- Login Form: no inline styles, only class-based styling -->
+            <form action="#" method="post" autocomplete="on" (ngSubmit)="onSubmit()" [formGroup]="loginForm"
+                class="login-form">
+                <!-- Username Field -->
+                <div class="input-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" formControlName="username"
+                        placeholder="e.g., johndoe or email@example.com" required autocomplete="username">
+                    <!-- subtle extra helper text, purely for better UX, no inline styling -->
+                    @if(loginForm.get('username')?.invalid && loginForm.get('username')?.touched) {
+                    <small class="helper-text">Enter your unique username</small>
+                    }
+                </div>
+
+                <!-- Password Field -->
+                <div class="input-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" formControlName="password" placeholder="••••••••"
+                        required autocomplete="current-password">
+                    @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+                    <small class="helper-text">Minimum 6 characters</small>
+                    }
+                </div>
+
+                <!-- Action Buttons area -->
+                <div class="action-buttons">
+                    <button type="submit" class="login-btn">Log in →</button>
+                    <div class="secondary-links">
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                        <a href="#" class="signup-link">Create new account</a>
+                    </div>
+                </div>
+
+                <!-- Demo info: just a static hint about demo usage (no inline) -->
+                <div class="demo-note">
+                    <span>✨ Demo credentials</span> — any username / password (frontend only)
+                </div>
+            </form>
+
+            <div class="footer-note">
+                Secure login • Protected by modern design
+            </div>
+        </div>
+    </div>
+</div>

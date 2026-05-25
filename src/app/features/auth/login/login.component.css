@@ -1,0 +1,230 @@
+.login {
+  font-family: system-ui, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+  background: linear-gradient(145deg, #e0eafc 0%, #cfdef3 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* ---------- MAIN CARD CONTAINER ---------- */
+.login-container {
+  max-width: 440px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(2px);
+  border-radius: 2rem;
+  box-shadow:
+    0 25px 45px -12px rgba(0, 0, 0, 0.35),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.3s ease;
+}
+
+.login-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 55px -15px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- HEADER SECTION ---------- */
+.form-header {
+  background: #1a2a3f;
+  padding: 1.8rem 2rem;
+  text-align: center;
+  color: white;
+}
+
+.form-header h1 {
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  margin-bottom: 0.4rem;
+}
+
+.form-header p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+/* ---------- FORM BODY ---------- */
+.form-body {
+  padding: 2rem 2rem 2rem 2rem;
+}
+
+/* Input group styles (each field wrapper) */
+.input-group {
+  margin-bottom: 1.6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modern label styling */
+.input-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #2c3e4e;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+/* Base input style */
+.input-group input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #f9fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 1.25rem;
+  transition: all 0.25s ease;
+  outline: none;
+  color: #0f172a;
+}
+
+/* Focus & hover effects */
+.input-group input:focus {
+  border-color: #3b82f6;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+.input-group input:hover:not(:focus) {
+  border-color: #cbd5e1;
+  background-color: #ffffff;
+}
+
+/* Placeholder refinement */
+.input-group input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+/* ------ Additional hint / optional footnote (UX) ------ */
+.helper-text {
+  display: block;
+  font-size: 0.7rem;
+  color: #5b6e8c;
+  margin-top: 0.4rem;
+  margin-left: 0.3rem;
+}
+
+/* Buttons & actions */
+.action-buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Main login button */
+.login-btn {
+  background: #1f3a4b;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.login-btn:hover {
+  background: #0f2b3b;
+  transform: scale(0.98);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-btn:active {
+  transform: scale(0.97);
+  background: #0c2332;
+}
+
+/* secondary link (demo reset / forgot) */
+.secondary-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8rem;
+  margin-top: 0.6rem;
+}
+
+.secondary-links a {
+  color: #456e8c;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+
+.secondary-links a:hover {
+  color: #1f3a4b;
+  text-decoration: underline;
+}
+
+/* demo hint / small note (no inline styles) */
+.demo-note {
+  background: #f1f5f9;
+  border-radius: 1rem;
+  padding: 0.7rem 1rem;
+  margin-top: 1.8rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #334155;
+  border-left: 3px solid #3b82f6;
+}
+
+.demo-note span {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* simple footer divider */
+.footer-note {
+  text-align: center;
+  font-size: 0.7rem;
+  color: #6c86a3;
+  border-top: 1px solid #eef2f8;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .form-header h1 {
+    font-size: 1.5rem;
+  }
+  .form-body {
+    padding: 1.5rem;
+  }
+  .login-container {
+    max-width: 100%;
+  }
+  .input-group input {
+    padding: 0.75rem 0.9rem;
+  }
+  .secondary-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+/* Simple accessibility focus outline for keyboard */
+.login-btn:focus-visible,
+.input-group input:focus-visible,
+a:focus-visible {
+  outline: 2px solid #1f3a4b;
+  outline-offset: 3px;
+}

@@ -1,0 +1,110 @@
+@if(isLoading) {
+<div class="loading-overlay">
+    <div class="spinner">loading</div>
+</div>
+}
+@if(errorMessage) {
+<div class="error-message">
+    <i class="fas fa-exclamation-triangle"></i>
+    {{ errorMessage }}
+</div>
+}
+<div class="register">
+    <div class="register-card">
+        <div class="form-header">
+            <h1><i class="fas fa-user-plus"></i> Create account</h1>
+            <p>Join us and start your journey</p>
+        </div>
+
+        <div class="form-body">
+            <!-- subtle demo reference (from original spec) -->
+            <div class="info-badge">
+                <i class="fas fa-clipboard-list"></i>
+                <span>Fields: firstName, lastName, email, username, password + confirm password</span>
+            </div>
+
+            <!-- registration form -->
+            <form id="registerForm" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+                <!-- first & last name row (firstName, lastName) -->
+                <div class="double-row">
+                    <div class="input-field">
+                        <label for="first_name"><i class="fas fa-user"></i> First name</label>
+                        <input type="text" id="first_name" formControlName="firstName" placeholder="John" value="John"
+                            required>
+                        @if(registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched) {
+                        <small class="helper-text">Enter your given name</small>
+                        }
+                    </div>
+                    <div class="input-field">
+                        <label for="last_name"><i class="fas fa-user-tie"></i> Last name</label>
+                        <input type="text" id="last_name" formControlName="lastName" placeholder="Doe" value="Doe"
+                            required>
+                        @if(registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
+                        <small class="helper-text">Enter your family name</small>
+                        }
+                    </div>
+                </div>
+
+                <!-- email field -->
+                <div class="input-field">
+                    <label for="reg_email"><i class="fas fa-envelope"></i> Email address</label>
+                    <input type="email" id="reg_email" formControlName="email" placeholder="john@example.com"
+                        value="john@example.com" required>
+                    @if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+                    <small class="helper-text">Enter a valid email address</small>
+                    }
+                </div>
+
+                <!-- username field -->
+                <div class="input-field">
+                    <label for="reg_username"><i class="fas fa-at"></i> Username</label>
+                    <input type="text" id="reg_username" formControlName="username" placeholder="johndoe"
+                        value="johndoe" required autocomplete="username">
+                    @if(registerForm.get('username')?.invalid && registerForm.get('username')?.touched) {
+                    <small class="helper-text">Choose a unique username</small>
+                    }
+                </div>
+
+                <!-- password field -->
+                <div class="input-field">
+                    <label for="reg_password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="reg_password" formControlName="password"
+                        placeholder="Create a strong password" value="johnpass" required autocomplete="new-password">
+                    <div class="password-requirements">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Use 6+ characters, letters/numbers for security</span>
+                    </div>
+                    @if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+                    <small class="helper-text">Minimum 6 characters required</small>
+                    }
+                </div>
+
+                <!-- CONFIRM PASSWORD FIELD (additional required field) -->
+                <div class="input-field">
+                    <label for="confirm_password"><i class="fas fa-check-circle"></i> Confirm password</label>
+                    <input type="password" id="confirm_password" formControlName="confirmPassword"
+                        placeholder="Re-enter your password" value="johnpass" required autocomplete="off">
+                    <!-- dynamic match indicator (no inline style, javascript will update text & class) -->
+                    <div id="confirmMatchMessage" class="match-status">
+                        <i class="fas fa-info-circle"></i> <span id="matchText">Passwords must match</span>
+                    </div>
+                    @if(registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched) {
+                    <small class="helper-text">Please confirm your password</small>
+                    }
+                </div>
+
+                <!-- submit button -->
+                <button type="submit" class="submit-btn">
+                    <span>Create account</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+
+        <div class="form-footer">
+            <p>Already registered? <a routerLink="/login">Sign in</a></p>
+            <p class="footer-p"><i class="far fa-shield-check"></i> Your data is protected
+            </p>
+        </div>
+    </div>
+</div>

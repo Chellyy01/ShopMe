@@ -1,0 +1,284 @@
+.register {
+  background: linear-gradient(135deg, #eef2f9 0%, #dce3ec 100%);
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+.footer-p {
+  font-size: 0.7rem;
+  margin-top: 0.45rem;
+}
+/* ---------- MAIN CARD CONTAINER (no inline css) ---------- */
+.register-card {
+  max-width: 580px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 2rem;
+  box-shadow:
+    0 25px 45px -12px rgba(0, 0, 0, 0.3),
+    0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s;
+}
+
+.register-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- HEADER SECTION ---------- */
+.form-header {
+  background: #0f172a;
+  padding: 1.8rem 2rem 1.5rem 2rem;
+  text-align: center;
+}
+
+.form-header h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: white;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.form-header h1 i {
+  color: #60a5fa;
+  font-size: 1.7rem;
+}
+
+.form-header p {
+  font-size: 0.9rem;
+  color: #b9c7d9;
+  font-weight: 400;
+  margin-top: 0.5rem;
+}
+
+/* ---------- FORM BODY ---------- */
+.form-body {
+  padding: 2rem 2rem 1.8rem 2rem;
+}
+
+/* each field group */
+.input-field {
+  margin-bottom: 1.3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.input-field label i {
+  width: 1.1rem;
+  font-size: 0.85rem;
+  color: #3b82f6;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  font-family: "Inter", monospace;
+  font-weight: 500;
+  background: #fefefe;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 1rem;
+  transition: all 0.2s ease;
+  outline: none;
+  color: #0f172a;
+}
+
+.input-field input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  background: #ffffff;
+}
+
+.input-field input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+
+/* double column for first & last name */
+.double-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.double-row .input-field {
+  flex: 1;
+  min-width: 140px;
+}
+
+/* password hint + inline validation hint */
+.password-requirements {
+  font-size: 0.7rem;
+  color: #475569;
+  margin-top: 0.35rem;
+  margin-left: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.password-requirements i {
+  color: #3b82f6;
+  font-size: 0.65rem;
+}
+
+/* confirm password match indicator (dynamic but purely style) */
+.match-status {
+  font-size: 0.7rem;
+  margin-top: 0.4rem;
+  margin-left: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.1s;
+}
+
+.match-status i {
+  font-size: 0.7rem;
+}
+
+.match-status.success {
+  color: #10b981;
+}
+
+.match-status.error {
+  color: #ef4444;
+}
+
+/* submit button */
+.submit-btn {
+  margin-top: 1.6rem;
+  width: 100%;
+  background: #0f172a;
+  border: none;
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  color: white;
+  border-radius: 3rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  letter-spacing: 0.2px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn i {
+  font-size: 1.1rem;
+  transition: transform 0.2s;
+}
+
+.submit-btn:hover {
+  background: #1e293b;
+  transform: scale(0.98);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.submit-btn:hover i {
+  transform: translateX(3px);
+}
+
+.submit-btn:active {
+  transform: scale(0.97);
+}
+
+/* footer section */
+.form-footer {
+  background: #fafcff;
+  padding: 1rem 2rem 1.3rem 2rem;
+  text-align: center;
+  border-top: 1px solid #eef2f8;
+}
+
+.form-footer p {
+  font-size: 0.85rem;
+  color: #334155;
+}
+
+.form-footer a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.form-footer a:hover {
+  color: #1e40af;
+  text-decoration: underline;
+}
+
+/* informational note */
+.info-badge {
+  background: #f1f5f9;
+  border-radius: 1rem;
+  font-size: 0.7rem;
+  text-align: center;
+  padding: 0.65rem;
+  margin-bottom: 1.2rem;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1px solid #e0e9f2;
+}
+
+.info-badge i {
+  color: #3b82f6;
+}
+
+/* responsive for mobile */
+@media (max-width: 500px) {
+  .form-body {
+    padding: 1.5rem;
+  }
+  .form-header {
+    padding: 1.2rem 1rem;
+  }
+  .form-header h1 {
+    font-size: 1.5rem;
+  }
+  .double-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .submit-btn {
+    padding: 0.75rem;
+  }
+}

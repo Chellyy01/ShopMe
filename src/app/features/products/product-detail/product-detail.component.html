@@ -1,0 +1,192 @@
+@if(product) {
+<div class="product-detail-page">
+    <div class="product-detail-container">
+        <!-- Main Product Detail Grid -->
+        <div class="detail-grid">
+            <!-- LEFT: Image Gallery -->
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img [src]="product.thumbnail">
+                </div>
+                <div class="thumbnail-row">
+                    @for(image of product.images; track image){
+                    <div class="thumb active">
+                        <img [src]="image" [alt]="'thumbnail 1'">
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <!-- RIGHT: Product Information (based on Product interface) -->
+            <div class="product-info">
+                <span class="brand-tag">{{product.category}}</span>
+                <h1 class="product-title">{{product.title}}</h1>
+
+                <div class="rating-section">
+                    <div class="stars">
+                        @for(star of [1,2,3,4, 5]; track star){
+                        <span class="star-filled">{{ star <= product.rating ? '★' : (star - product.rating < 1 &&
+                                product.rating % 1>= 0.5) ? '½' : '☆' }}</span>
+                        }
+                    </div>
+                    <span class="rating-value">{{product.rating}}</span>
+                    <span class="review-count">({{product.reviews.length}} reviews)</span>
+                    <span class="stock-status"
+                        [ngClass]="product.availabilityStatus === 'In Stock' ? 'in-stock' : 'low-stock'">✓{{product.availabilityStatus}}</span>
+                </div>
+
+                <div class="price-row">
+                    <span class="current-price"> ${{ getDiscountedPrice(product).toFixed(2) }}</span>
+                    <span class="old-price">${{product.price}}</span>
+                    <span class="discount-badge">{{product.discountPercentage}}%</span>
+                </div>
+
+                <div class="description">
+                    {{ product.description }}
+                </div>
+
+                <!-- Product Specs Grid (from model) -->
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Brand</span>
+                        <span class="spec-value">{{product.brand}}</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">SKU</span>
+                        <span class="spec-value">{{product.sku}}</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Weight</span>
+                        <span class="spec-value">{{product.weight}}</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Dimensions</span>
+                        <span class="spec-value">Width: {{product.dimensions.width}}, Height:
+                            {{product.dimensions.height}}, Depth: {{product.dimensions.depth}}</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Warranty</span>
+                        <span class="spec-value">{{product.warrantyInformation}}</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Min. Order Qty</span>
+                        <span class="spec-value">{{product.minimumOrderQuantity}} </span>
+                    </div>
+                </div>
+
+                <!-- Tags -->
+                <div class="tags-row">
+                    @for(tag of product.tags; track tag){
+                    <span class="tag">{{tag}}</span>
+                    }
+                </div>
+
+                <!-- Colors & Size Options -->
+                <!-- <div class="options-section">
+                    <div class="option-group">
+                        <span class="option-label">Colours</span>
+                        <div class="color-swatches">
+                            <div class="color black selected"></div>
+                            <div class="color red"></div>
+                            <div class="color blue"></div>
+                        </div>
+                    </div>
+                    <div class="option-group">
+                        <span class="option-label">Size</span>
+                        <div class="size-buttons">
+                            <span class="size-btn">XS</span>
+                            <span class="size-btn active">S</span>
+                            <span class="size-btn">M</span>
+                            <span class="size-btn">L</span>
+                            <span class="size-btn">XL</span>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Delivery & Return Info -->
+                <div class="info-row">
+                    <div class="info-item">
+                        <span class="info-icon">🚚</span>
+                        <span>{{product.shippingInformation}}<br><strong>Enter postal code</strong></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">↩️</span>
+                        <span>{{product.returnPolicy}}<br><strong>Free return policy</strong></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🛡️</span>
+                        <span>{{product.warrantyInformation}}<br><strong>Parts & labor</strong></span>
+                    </div>
+                </div>
+
+                <!-- Add to Cart Button -->
+                <div class="add-to-cart-wrapper">
+                    <button class="add-cart-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1.5" />
+                            <circle cx="20" cy="21" r="1.5" />
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                        </svg>
+                        Add To Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Reviews Section (from model) -->
+        <div class="reviews-section">
+            <div class="reviews-title">
+                <span>⭐ Customer Reviews</span>
+            </div>
+
+            @for(review of product.reviews; track review){
+            <div class="review-card">
+                <div class="review-header">
+                    <div>
+                        <span class="reviewer-name">{{review.reviewerName}}</span>
+                        <span>{{review.reviewerEmail}}</span>
+                    </div>
+
+                    <span class="review-date">{{review.date}}</span>
+                </div>
+                @for(star of [1,2,3,4, 5]; track star){
+                <span class="review-stars">{{ star <= review.rating ? '★' : '☆' }}</span>
+                        }
+                        <div class="review-comment">{{review.comment}}</div>
+            </div>
+            }
+
+        </div>
+
+        <!-- Related Items Section (inspired by reference image) -->
+        <div class="related-section">
+            <h2 class="related-title">🔥 You May Also Like</h2>
+            <div class="related-grid">
+                <!-- Related Product 1 -->
+                @for(related of relatedProducts; track related){
+                <div class="related-card">
+                    <div class="related-img">
+                        <img [src]="related.thumbnail" alt="{{related.title}}" class="related-product-img"
+                            (error)="onImageError($event)">
+                    </div>
+                    <div class="related-name">{{related.title}}</div>
+                    <div class="related-price">
+                        <span class="related-current">${{getDiscountedPrice(related).toFixed(2)}}</span>
+                        <span class="related-old">${{related.price}}</span>
+                        <span class="related-discount">{{related.discountPercentage}}%</span>
+                    </div>
+                    <div class="related-rating">
+                        @for(star of [1,2,3,4, 5]; track star){
+                        <span class="star">{{ star <= related.rating ? '★' : '☆' }}</span>
+                                }
+                                <span>({{related.reviews.length}})</span>
+                    </div>
+                </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+}

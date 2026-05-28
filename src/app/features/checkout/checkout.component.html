@@ -1,1 +1,169 @@
-<p>checkout works!</p>
+<div class="checkout">
+    <div class="checkout-wrapper">
+        <div class="page-header">
+            <h1>Secure checkout</h1>
+            <p>Review your order & complete payment</p>
+        </div>
+
+        <form class="checkout-grid" (ngSubmit)="onCheckoutFormSubmit()" [formGroup]="checkoutForm">
+            <!-- LEFT COLUMN: Billing & Payment -->
+            <div class="checkout-form">
+                <!-- Billing Information Section -->
+                <div>
+                    <h2 class="section-title">Billing details</h2>
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label>Full name</label>
+                            <input class="fullname" type="text" placeholder="Johnathan Carter"
+                                formControlName="fullName">
+                            @if(checkoutForm.get('fullName')?.invalid && checkoutForm.get('fullName')?.touched) {
+                            <small>full name is required</small>
+                            }
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="alex@example.com" formControlName="email">
+                            @if(checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched) {
+                            <small>email is required</small>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" placeholder="(555) 123-4567" formControlName="phone">
+                            @if(checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched) {
+                            <small>phone number is required</small>
+                            }
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label>Address</label>
+                            <textarea rows="2" placeholder="Street address, P.O. Box"
+                                formControlName="address"></textarea>
+                            @if(checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched) {
+                            <small>address is required</small>
+                            }
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" placeholder="City" formControlName="city">
+                            @if(checkoutForm.get('city')?.invalid && checkoutForm.get('city')?.touched) {
+                            <small>city is required</small>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label>State</label>
+                            <input type="text" placeholder="State / Province" formControlName="state">
+                            @if(checkoutForm.get('state')?.invalid && checkoutForm.get('state')?.touched) {
+                            <small>state is required</small>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label>Postal code</label>
+                            <input type="number" placeholder="ZIP / Postal" formControlName="postalCode">
+                            @if(checkoutForm.get('postalCode')?.invalid && checkoutForm.get('postalCode')?.touched) {
+                            <small>postalCode is required</small>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment method section -->
+                <div class="payment">
+                    <h2 class="section-title">Payment method</h2>
+                    <div class="payment-group">
+                        <div class="payment-options">
+                            <div class="radio-item">
+                                <input type="radio" id="creditCard" value="carf" formControlName="paymentMethod">
+                                <label for="creditCard">💳 Credit / Debit Card (Visa, Mastercard, Amex)</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="paypal" value="paypal" formControlName="paymentMethod">
+                                <label for="paypal">📱 PayPal</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="applePay" value="wallet" formControlName="paymentMethod">
+                                <label for="applePay">🍏 Apple Pay / Google Pay</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="bankTransfer" value="bank" formControlName="paymentMethod">
+                                <label for="bankTransfer">🏦 Bank transfer (direct debit)</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- decorative simulated card fields (just visual consistency) -->
+                <div class="formrow">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Card number (demo)</label>
+                            <input type="text" value="•••• •••• •••• 4242" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Expiry</label>
+                            <input type="text" value="12/28" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>CVC</label>
+                            <input type="text" value="***" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: ORDER SUMMARY with Items, subtotal, shipping, total -->
+            <div class="order-summary">
+                <h2 class="section-title">Your order</h2>
+
+                <!-- Items list with detailed product rows -->
+                <div class="cart-items">
+                    @for(product of (cart$ | async)?.products; track product.id){
+                    <div class="cart-item">
+                        <div class="item-info">
+                            <span class="item-name">{{product.title}}</span>
+                            <span class="item-meta"> Qty: {{product.quantity}}</span>
+                        </div>
+                        <div class="item-price">${{product.price * product.quantity}}</div>
+                    </div>
+                    }
+                </div>
+
+                <!-- pricing breakdown: subtotal, shipping, total -->
+                <div class="price-summary">
+                    <div class="price-row">
+                        <span class="price-label">Subtotal</span>
+                        <span class="price-value">${{(cartTotal$ | async)?.toFixed(2)}}</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">Shipping</span>
+                        <span class="price-value">Free</span>
+                    </div>
+                    <!-- <div class="price-row">
+                        <span class="price-label">Estimated tax (included)</span>
+                        <span class="price-value">$0.00</span>
+                    </div> -->
+                    <div class="price-row total-row">
+                        <span class="price-label">Total</span>
+                        <span class="price-value">${{(cartTotal$ | async)?.toFixed(2)}}</span>
+                    </div>
+                    <div class="shipping-note">* Standard delivery 3-5 business days</div>
+                </div>
+
+
+                <!-- no functional button - just a decorative mock element to signal "place order", no inline style, no js -->
+                <div class="checkout-placeholder">
+                    <button type="submit" class="mock-button">Proceed to payment (demo)</button>
+
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>

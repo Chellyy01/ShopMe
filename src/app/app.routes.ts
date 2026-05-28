@@ -9,6 +9,7 @@ import { ProductsComponent } from './features/products/products.component';
 import { ProductDetailComponent } from './features/products/product-detail/product-detail.component';
 import { CheckoutComponent } from './features/checkout/checkout.component';
 import { authGuard } from './core/guards/auth.guard';
+import { CartComponent } from './features/cart/cart.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,7 @@ export const routes: Routes = [
       { path: 'contact', component: ContactComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'products/:id', component: ProductDetailComponent },
+      { path: 'cart', component: CartComponent },
       {
         path: 'checkout',
         component: CheckoutComponent,

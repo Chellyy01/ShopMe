@@ -1,1 +1,76 @@
-<p>cart works!</p>
+<div class="cart">
+    <div class="cart-container">
+        @if(!(cart$ | async)) {
+        <!-- EMPTY CART STATE  -->
+        <div style="margin-top: 3rem; border-top: 2px solid #e2e8f0; padding-top: 2rem;">
+            <div style="margin-bottom: 1rem;">
+                <h2 style="font-size: 1.3rem; font-weight: 500; color: #334155;">📦 Empty cart
+                </h2>
+            </div>
+            <div class="empty-cart-state">
+                <div class="empty-icon">🛍️</div>
+                <h3>Your cart feels light</h3>
+                <p>Add some amazing products to get started.</p>
+                <div class="shop-link" routerLink="/products">Continue shopping →</div>
+            </div>
+        </div>
+        } @else {
+
+        <div class="cart-header">
+            <h1>🛒 Your Cart</h1>
+            <span>{{cartCount$ | async}} items</span>
+        </div>
+
+        <div class="cart-layout">
+            <!-- LEFT COLUMN: cart items with all requested UI (filled cart state) -->
+            <div class="cart-items-section">
+
+                <!-- product 1: backpack -->
+                @for(product of (cart$ | async)?.products; track product.id) {
+                <div class="cart-item">
+                    <div class="item-image">
+                        <img [src]="product.thumbnail">
+                    </div>
+                    <div class="item-details">
+                        <div class="item-title">{{product.title}}</div>
+                        <div class="item-price">${{product.price}}</div>
+                    </div>
+                    <div class="quantity-controls">
+                        <span class="qty-btn" aria-label="Decrease quantity"
+                            (click)="onMinusClicked(product.id)">−</span>
+                        <span class="quantity-value">{{product.quantity}}</span>
+                        <span class="qty-btn" aria-label="Increase quantity" (click)="onAddClicked(product.id)">+</span>
+                    </div>
+                    <div class="item-actions">
+                        <div class="item-subtotal">${{product.quantity * product.price}}</div>
+                        <div class="remove-btn" (click)="removeFromCart(product.id)">✕ Remove</div>
+                    </div>
+                </div>
+                }
+            </div>
+
+            <!-- RIGHT COLUMN: summary panel (subtotal/total/clear/checkout) -->
+            <div class="cart-summary">
+                <div>
+                    <div class="summary-row">
+                        <span class="subtotal-label">Subtotal</span>
+                        <span><strong>${{(cartTotal$ | async)?.toFixed(2)}}</strong></span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="subtotal-label">Shipping</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total</span>
+                        <span>${{(cartTotal$ | async)?.toFixed(2)}}</span>
+                    </div>
+                    <hr />
+                    <div class="clear-btn" (click)="clearCart()">🗑️ Clear cart</div>
+                    <div class="checkout-btn" routerLink="/checkout">Proceed to checkout →</div>
+                </div>
+            </div>
+        </div>
+
+        }
+    </div>
+</div>

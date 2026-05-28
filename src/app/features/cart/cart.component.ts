@@ -1,12 +1,39 @@
 import { Component } from '@angular/core';
+import { inject } from '@angular/core';
+import { CartService } from './services/cart.service';
+import { AsyncPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe, RouterLink],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css'
+  styleUrl: './cart.component.css',
 })
 export class CartComponent {
+  cartService = inject(CartService);
 
+  cart$ = this.cartService.cart$;
+  cartCount$ = this.cartService.cartCount$;
+  cartTotal$ = this.cartService.cartTotal$;
+
+  removeFromCart(productId: number) {
+    this.cartService.removeFromCart(productId);
+    if (this.cartService.cartbehaviorSubject.value?.products.length === 0) {
+      this.cartService.clearCart();
+    }
+  }
+
+  clearCart() {
+    this.cartService.clearCart();
+  }
+
+  onMinusClicked(productId: number) {
+    this.cartService.decreaseQuantity(productId);
+  }
+
+  onAddClicked(productId: number) {
+    this.cartService.increaseQuantity(productId);
+  }
 }

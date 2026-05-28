@@ -11,13 +11,52 @@ export class ProductService {
   http = inject(HttpClient);
   baseUrl: string = environment.apiUrl;
 
-  getProducts(): Observable<Product[]> {
-    return this.http
-      .get<ProductsResponse>(`${this.baseUrl}/products`)
-      .pipe(map((response) => response.products));
+  getProducts(
+    limit: number = 10,
+    skip: number = 0,
+  ): Observable<ProductsResponse> {
+    return this.http.get<ProductsResponse>(
+      `${this.baseUrl}/products?limit=${limit}&skip=${skip}`,
+    );
   }
 
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.baseUrl}/products/${id}`);
+  }
+
+  searchProducts(
+    query: string,
+    limit: number = 10,
+    skip: number = 0,
+  ): Observable<ProductsResponse> {
+    const encodedQuery = encodeURIComponent(query);
+    return this.http.get<ProductsResponse>(
+      `${this.baseUrl}/products/search?q=${encodedQuery}&limit=${limit}&skip=${skip}`,
+    );
+  }
+
+  getCategories() {
+    return this.http.get<any[]>(`${this.baseUrl}/products/categories`);
+  }
+
+  getProductsByCategory(
+    category: string,
+    limit: number = 10,
+    skip: number = 0,
+  ): Observable<ProductsResponse> {
+    return this.http.get<ProductsResponse>(
+      `${this.baseUrl}/products/category/${category}?limit=${limit}&skip=${skip}`,
+    );
+  }
+
+  getSortedProducts(
+    sortBy: string,
+    order: string,
+    limit: number = 10,
+    skip: number = 0,
+  ): Observable<ProductsResponse> {
+    return this.http.get<ProductsResponse>(
+      `${this.baseUrl}/products?sortBy=${sortBy}&order=${order}&limit=${limit}&skip=${skip}`,
+    );
   }
 }

@@ -1,4 +1,37 @@
+<section class="products-toolbar">
+    <div class="toolbar-heading">
+        <span class="eyebrow">Categories</span>
+        <h2>Browse products</h2>
+    </div>
+
+    <div class="category-list" aria-label="Product categories">
+        <button class="category-pill" [ngClass]="{active: activeCategory === 'all'}" type="button"
+            (click)="onAllClicked()">All</button>
+        @for(category of categories; track category.slug) {
+        <button [ngClass]="{active: activeCategory === category.slug}" class="category-pill" type="button"
+            (click)="onCategoryClicked(category.slug)">
+            {{category.name}}
+        </button>
+        }
+    </div>
+</section>
+
+<div class="sort-control">
+    <label for="sortProducts">Sort by</label>
+
+    <div class="select-wrap">
+        <select id="sortProducts" [value]="activeSort" (change)="onSortChanged($event)">
+            <option value="default">Default</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating-desc">Rating: High to Low</option>
+            <option value="title-asc">Title: A to Z</option>
+        </select>
+    </div>
+</div>
+
 <div class="container">
+
     @if(isloading){
     <div class="loading-container">
         <div class="spinner"></div>
@@ -14,4 +47,18 @@
     <app-product-card [product]="product">
     </app-product-card>
     }
+
+    @if(!errorMessage && !isloading && !products.length) {
+    <p>No products found</p>
+    }
+</div>
+
+<div class="pagination-bar" aria-label="Product pagination">
+    <button class="page-btn" type="button" (click)="onPrevBtnClicked()">Prev</button>
+    <div class="page-indicator">
+        <span class="current-page">{{currentPage}}</span>
+        <span class="page-divider">/</span>
+        <span>{{totalPages}}</span>
+    </div>
+    <button class="page-btn primary" type="button" (click)="onNextBtnClicked()">Next</button>
 </div>

@@ -1,13 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../product.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../cart/services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css',
 })
@@ -15,6 +16,7 @@ export class ProductDetailComponent implements OnInit {
   product: Product | null = null;
   relatedProducts: Product[] = [];
   productService = inject(ProductService);
+  cartService = inject(CartService);
   activeRoute = inject(ActivatedRoute);
   isloading: boolean = true;
   errorMessage: string = '';
@@ -26,6 +28,7 @@ export class ProductDetailComponent implements OnInit {
         next: (data) => {
           this.product = data;
           this.getRelatedProducts(this.product.category);
+          // console.log(this.getRelatedProducts(this.product.category));
         },
         error: (error) => {
           this.errorMessage = 'Failed to load product details.';
@@ -48,14 +51,14 @@ export class ProductDetailComponent implements OnInit {
 
   getRelatedProducts(category: string | null): void {
     if (!category) return;
-    this.productService.getProducts().subscribe({
+    this.productService.getProductsByCategory(category).subscribe({
       next: (data) => {
-        this.relatedProducts = data.filter(
-          (p) => p.category === category && p.id !== this.product?.id,
+        this.relatedProducts = data.products.filter(
+          (p) => p.id !== this.product?.id,
         );
       },
-      error: (error) => {
-        console.error('Failed to load related products:', error);
+      error: (err) => {
+        console.log(err);
       },
     });
   }
@@ -68,5 +71,10 @@ export class ProductDetailComponent implements OnInit {
     if (!product) return 0;
 
     return product.price - (product.discountPercentage / 100) * product.price;
+  }
+
+  onAddToCartClicked(product: any) {
+    this.cartService.addToCart(product, 1);
+    console.log('Added to cart:', product);
   }
 }

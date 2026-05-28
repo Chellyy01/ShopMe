@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from '../../cart/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginComponent {
   fb = inject(FormBuilder);
   authservice = inject(AuthService);
+  cartService = inject(CartService);
   router = inject(Router);
   activeRoute = inject(ActivatedRoute);
   isLoading: boolean = false;
@@ -35,6 +37,7 @@ export class LoginComponent {
     this.authservice.login(username!, password!).subscribe({
       next: (user) => {
         this.isLoading = false;
+        this.cartService.loadSavedCartForCurrentUser();
         const returnUrl =
           this.activeRoute.snapshot.queryParams['returnUrl'] || '/';
         this.router.navigate([returnUrl]);

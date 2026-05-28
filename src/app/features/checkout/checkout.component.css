@@ -1,0 +1,351 @@
+.checkout {
+  background: #f2f4f8;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    sans-serif;
+  line-height: 1.45;
+  padding: 2rem 1.5rem;
+  color: #1e2a3e;
+}
+
+/* main checkout container */
+.checkout-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.fullname {
+  cursor: text;
+  background: #fff;
+}
+.payment {
+  margin-top: 2rem;
+}
+
+.formrow {
+  margin-top: 1.6rem;
+  background: #fafcff;
+  border-radius: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ecf3fa;
+}
+/* header section */
+.page-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: #0f172a;
+  margin-bottom: 0.4rem;
+}
+
+.page-header p {
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+/* two column grid: form + order summary */
+.checkout-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* left column: billing details & payment method */
+.checkout-form {
+  flex: 2;
+  min-width: 260px;
+  background: #ffffff;
+  border-radius: 1.25rem;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.03),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.8rem 2rem;
+}
+
+/* right column: order summary */
+.order-summary {
+  flex: 1.2;
+  min-width: 280px;
+  background: #ffffff;
+  border-radius: 1.25rem;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.03),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.8rem 1.8rem;
+  align-self: start;
+}
+
+/* section titles */
+.section-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  border-left: 4px solid #3b82f6;
+  padding-left: 0.75rem;
+  margin-bottom: 1.5rem;
+  color: #0f172a;
+}
+
+/* form row groups */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  gap: 0.8rem;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 2;
+}
+
+.form-group label {
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #334155;
+  font-size: 0.75rem;
+}
+.form-group input {
+  background: #fefefe;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #cfdee9;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  background-color: #fff;
+  transition: 0.2s ease;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* payment method specific styling */
+.payment-group {
+  margin-top: 0.5rem;
+}
+
+.payment-options {
+  background: #f9fafb;
+  border-radius: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e9edf2;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.8rem;
+  cursor: default;
+}
+
+.radio-item:last-child {
+  margin-bottom: 0;
+}
+
+.radio-item input {
+  width: 18px;
+  height: 18px;
+  accent-color: #3b82f6;
+  margin: 0;
+}
+
+.radio-item label {
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 0.95rem;
+  color: #1e293b;
+}
+
+/* items list (cart) */
+.cart-items {
+  border-bottom: 1px solid #eef2f6;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.5rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.item-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.item-meta {
+  font-size: 0.75rem;
+  color: #5b6e8c;
+}
+
+.item-price {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* price rows */
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0;
+  font-size: 0.95rem;
+}
+
+.price-label {
+  color: #475569;
+}
+
+.price-value {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.total-row {
+  margin-top: 0.6rem;
+  padding-top: 0.9rem;
+  border-top: 2px dashed #dee4ec;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.total-row .price-label {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.total-row .price-value {
+  font-weight: 800;
+  color: #0f172a;
+  font-size: 1.25rem;
+}
+
+.shipping-note {
+  font-size: 0.7rem;
+  color: #5c6f87;
+  margin-top: 0.2rem;
+  text-align: right;
+}
+
+hr {
+  margin: 1rem 0;
+  border: none;
+  border-top: 1px solid #eef2f8;
+}
+
+/* static placeholder button (visual only, no function) */
+.checkout-placeholder {
+  margin-top: 1.8rem;
+  text-align: center;
+}
+.mock-button {
+  display: inline-block;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  padding: 0.9rem 1.8rem;
+  border-radius: 60px;
+  font-size: 1rem;
+  text-align: center;
+  width: 100%;
+  cursor: default;
+  border: none;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: none;
+}
+.mock-button-secondary {
+  background: #eef2ff;
+  color: #1e40af;
+  margin-top: 0.6rem;
+}
+
+/* small adjustments */
+.full-width {
+  width: 100%;
+}
+
+@media (max-width: 780px) {
+  body {
+    padding: 1rem;
+  }
+  .checkout-form,
+  .order-summary {
+    padding: 1.4rem;
+  }
+  .section-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* remove default number spinner for postal code */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* make address field stand out */
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #cfdee9;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+  background-color: #fff;
+}
+textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.inline-note {
+  font-size: 0.7rem;
+  color: #6c7e9e;
+  margin-top: 0.2rem;
+}

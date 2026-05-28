@@ -60,8 +60,12 @@ export class AuthService {
       tap((user) => {
         this.currentUserBehaviorSubject.next(user);
         localStorage.setItem('currentUser', JSON.stringify(user));
-        localStorage.setItem('token', user.accessToken);
-        localStorage.setItem('refreshToken', user.refreshToken);
+        if (user.accessToken) {
+          localStorage.setItem('token', user.accessToken);
+        }
+        if (user.refreshToken) {
+          localStorage.setItem('refreshToken', user.refreshToken);
+        }
       }),
     );
   }

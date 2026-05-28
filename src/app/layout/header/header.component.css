@@ -95,3 +95,21 @@ nav a.active {
   justify-content: center;
   color: #000;
 }
+.icon {
+  position: relative;
+}
+.cart-count {
+  position: absolute;
+  top: 3.5rem;
+  /* background: #000;
+  color: #fff; */
+  font-size: 18px;
+  font-weight: 700;
+  /*
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center; */
+}

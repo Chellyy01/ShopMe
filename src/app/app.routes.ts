@@ -10,6 +10,10 @@ import { ProductDetailComponent } from './features/products/product-detail/produ
 import { CheckoutComponent } from './features/checkout/checkout.component';
 import { authGuard } from './core/guards/auth.guard';
 import { CartComponent } from './features/cart/cart.component';
+import { SuccessPageComponent } from './features/checkout/success-page/success-page.component';
+import { OrdersComponent } from './features/checkout/orders/orders.component';
+import { AccountComponent } from './features/account/account.component';
+import { WishlistComponent } from './features/wishlist/wishlist.component';
 
 export const routes: Routes = [
   {
@@ -26,6 +30,24 @@ export const routes: Routes = [
         path: 'checkout',
         component: CheckoutComponent,
         canActivate: [authGuard],
+      },
+      {
+        path: 'success',
+        component: SuccessPageComponent,
+      },
+      {
+        path: 'orders',
+        component: OrdersComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'account',
+        component: AccountComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'wishlist',
+        component: WishlistComponent,
       },
     ],
   },

@@ -1,0 +1,41 @@
+<div class="order">
+
+    <div class="orders-container">
+        <div class="page-header">
+            <h1>📦 Orders overview</h1>
+            <div class="order-summary-badge">
+                ⚡ latest transactions
+            </div>
+        </div>
+
+        <div class="orders-grid">
+            <!-- ORDER CARD 1 - delivered example with multiple items -->
+            @for(order of orders; track order) {
+            <div class="order-card">
+                <div class="order-meta-row">
+                    <div class="order-ids">
+                        <div class="order-id">{{order.id}}</div>
+                        <div class="order-date">{{order.createdAt}}</div>
+                    </div>
+                    <div class="order-totals">
+                        <div class="total-amount">${{order.total}} <small>USD</small></div>
+                        <div class="items-count">📦 {{totalProducts(order)}} items</div>
+                    </div>
+                    <div class="status-badge status-delivered">{{order.status}}</div>
+                </div>
+                <div class="product-list-section">
+                    <div class="product-list-title">
+                        🛍️ Products in order <span>{{totalProducts(order)}}</span>
+                    </div>
+                    <ul class="product-items">
+                        @for(product of order.products; track product) {
+                        <li>{{product.title}} ({{product.quantity}})</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+</div>

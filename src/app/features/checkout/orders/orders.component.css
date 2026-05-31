@@ -1,0 +1,305 @@
+.order {
+  background: #f4f6fa;
+  font-family:
+    system-ui,
+    "Segoe UI",
+    "Inter",
+    "Roboto",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  line-height: 1.5;
+  padding: 2rem 1.5rem;
+  color: #1e293b;
+}
+
+/* page container */
+.orders-container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* header section */
+.page-header {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 1rem;
+}
+
+.page-header h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  background: linear-gradient(135deg, #1e293b, #2d3a4e);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.order-summary-badge {
+  background: #ffffff;
+  padding: 0.4rem 1.2rem;
+  border-radius: 60px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  color: #2c3e66;
+  border: 1px solid #e0e7ef;
+}
+
+/* card grid (responsive) */
+.orders-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* individual order card */
+.order-card {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.03),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  overflow: hidden;
+  border: 1px solid #edf2f7;
+}
+
+.order-card:hover {
+  box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* main row: order meta + totals */
+.order-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem 1.8rem;
+  background: #fefefe;
+  border-bottom: 1px solid #eef2f8;
+}
+
+.order-ids {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: baseline;
+}
+
+.order-id {
+  font-weight: 700;
+  font-size: 1.15rem;
+  background: #f1f5f9;
+  padding: 0.2rem 0.7rem;
+  border-radius: 40px;
+  letter-spacing: 0.3px;
+  color: #0f172a;
+}
+
+.order-date {
+  font-size: 0.85rem;
+  color: #4a5b6e;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.order-date::before {
+  content: "📅";
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* status badge */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+  background: #eef2ff;
+  color: #1e40af;
+}
+
+.status-delivered {
+  background: #e0f2e9;
+  color: #1e6f3f;
+}
+
+.status-pending {
+  background: #fff0db;
+  color: #b45309;
+}
+
+.status-shipped {
+  background: #e0f2fe;
+  color: #0c6b8c;
+}
+
+.status-cancelled {
+  background: #ffe6e5;
+  color: #b91c1c;
+}
+
+.status-processing {
+  background: #e9e9ff;
+  color: #4f46e5;
+}
+
+/* totals & items summary */
+.order-totals {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  background: #fafcff;
+  padding: 0.6rem 1rem;
+  border-radius: 80px;
+}
+
+.total-amount {
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #0f2b3d;
+}
+
+.total-amount small {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #566b82;
+}
+
+.items-count {
+  background: #eef3fc;
+  padding: 0.2rem 0.8rem;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #1f3a5f;
+}
+
+/* product list section */
+.product-list-section {
+  padding: 1.2rem 1.8rem 1.5rem 1.8rem;
+  background: #ffffff;
+}
+
+.product-list-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: #5b6e8c;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.product-list-title span {
+  background: #eef2ff;
+  padding: 0 6px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+}
+
+.product-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  list-style: none;
+}
+
+.product-items li {
+  background: #f8fafd;
+  padding: 0.4rem 1rem 0.4rem 1rem;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1e2f44;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #eef2fa;
+  transition: all 0.1s;
+}
+
+.product-items li::before {
+  content: "•";
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #3b82f6;
+}
+
+/* extra note for empty product list (not needed, but safe) */
+.product-items:empty::after {
+  content: "No product details available";
+  color: #8ba0bc;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+/* divider & subtle spacing */
+.order-card:not(:last-child) {
+  margin-bottom: 0;
+}
+
+/* responsive adjustments */
+@media (max-width: 720px) {
+  body {
+    padding: 1.25rem;
+  }
+  .order-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.2rem;
+  }
+  .order-totals {
+    align-self: flex-start;
+    background: transparent;
+    padding: 0;
+    gap: 1rem;
+  }
+  .total-amount {
+    font-size: 1.2rem;
+  }
+  .product-list-section {
+    padding: 1rem 1.2rem 1.2rem;
+  }
+  .product-items li {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .order-ids {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .order-id {
+    align-self: flex-start;
+  }
+}
+
+/* additional hover and accessibility */
+.status-badge {
+  transition: 0.1s ease;
+}
+button,
+.order-card {
+  user-select: none;
+}

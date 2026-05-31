@@ -8,6 +8,7 @@ export interface User {
   image: string;
   accessToken: string;
   refreshToken: string;
+  phone: string;
 }
 
 export interface LoginRequest {

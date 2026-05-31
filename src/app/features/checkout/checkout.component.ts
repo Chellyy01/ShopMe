@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartService } from '../cart/services/cart.service';
 import { AsyncPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -15,6 +16,7 @@ export class CheckoutComponent {
   cartService = inject(CartService);
   cart$ = this.cartService.cart$;
   cartTotal$ = this.cartService.cartTotal$;
+  router = inject(Router);
 
   checkoutForm = this.fb.group({
     fullName: ['', Validators.required],
@@ -38,17 +40,27 @@ export class CheckoutComponent {
       return;
     }
 
+    const totalCalc = cart.products.reduce(
+      (sum: number, item: any) => sum + item.price * item.quantity,
+      0,
+    );
+
     const order = {
       id: Date.now(),
       customer: this.checkoutForm.value,
       products: cart.products,
-      total: cart.total,
+      total: totalCalc,
       status: 'pending',
       createdAt: new Date().toISOString(),
     };
 
     console.log(order);
     this.saveOrderForCurrentUser(order);
+    this.cartService.clearCart();
+    this.cartService.removeSavedCartForCurrentUser();
+    this.checkoutForm.reset();
+
+    this.router.navigate(['/success']);
   }
 
   saveOrderForCurrentUser(order: any) {

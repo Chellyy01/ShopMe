@@ -85,4 +85,8 @@ export class AuthService {
       password,
     });
   }
+
+  getAuthUser() {
+    return this.http.get<User>(`${this.baseUrl}/user/me`);
+  }
 }

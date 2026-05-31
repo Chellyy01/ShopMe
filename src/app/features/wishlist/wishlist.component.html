@@ -1,0 +1,44 @@
+<div class="wishlist">
+    <div class="wishlist-page">
+        <!-- page header -->
+        <div class="wishlist-header">
+            <div class="title-section">
+                <h1><i class="far fa-heart" aria-hidden="true"></i> My Wishlist</h1>
+                <p>Curated favorites — timeless pieces you love</p>
+            </div>
+            <div class="stats-badge">
+                <i class="fas fa-gem"></i> {{(wishList$ | async)?.length}} cherished items
+            </div>
+        </div>
+
+        <!-- Wishlist grid: displays product details: id, title, image, price - pure HTML/CSS, no JS -->
+        <div class="wishlist-grid">
+            <!-- Product Card 1 -->
+            @for(product of (wishList$ | async); track product) {
+            <article class="wishlist-card">
+                <div class="card-image">
+                    <img [src]="product.thumbnail" alt="Minimalist Leather Backpack" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <!-- <div class="item-id">ID: 101</div> -->
+                    <h3 class="item-title">{{product.title}}</h3>
+                    <div class="price-container">
+                        <span class="price-amount">${{product.price}}</span>
+                        <!-- <span class="price-currency">USD</span> -->
+                    </div>
+                    <div class="wishlist-action">
+                        <div class="heart-icon"><i class="fas fa-heart"></i></div>
+                        <span class="view-detail"><i class="far fa-bookmark"></i> saved</span>
+                        <span class="fas fa-trash" (click)="removeWish(product.id)">Delete</span>
+                    </div>
+
+                </div>
+            </article>
+            }
+        </div>
+
+        <div class="wishlist-footer">
+            <i class="far fa-heart"></i> Your saved treasures • prices shown in USD
+        </div>
+    </div>
+</div>

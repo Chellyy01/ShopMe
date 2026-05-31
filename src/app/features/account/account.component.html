@@ -1,0 +1,84 @@
+<div class="account">
+    <div class="profile-container">
+        @if(currentUser$ | async; as user) {
+        <div class="profile-card">
+            <!-- decorative cover image area -->
+            <div class="profile-cover"></div>
+
+            <div class="profile-body">
+                <!-- Avatar section -->
+                <div class="avatar-section">
+                    <div class="avatar-wrapper">
+                        <img class="avatar-img" [src]="user.image" alt="User avatar - Olivia Bennett">
+                    </div>
+                </div>
+
+                <!-- Name & username -->
+                <div class="name-section">
+                    <div class="full-name">{{user?.firstName}} {{user.lastName}}</div>
+                    <div class="username">{{user?.username}}</div>
+                    <div class="profile-meta">
+                        <span class="meta-badge">✨ member since 2023</span>
+                        <span class="meta-badge">🟢 active</span>
+                    </div>
+                </div>
+
+                <!-- Contact details grid (firstName, lastName, email, phone, username fully shown) -->
+                <div class="info-grid">
+                    <!-- firstName + lastName as separate fields -->
+                    <div class="info-item">
+                        <div class="info-icon">👤</div>
+                        <div class="info-content">
+                            <span class="info-label">First name</span>
+                            <span class="info-value">{{user.firstName}}</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🧑‍🤝‍🧑</div>
+                        <div class="info-content">
+                            <span class="info-label">Last name</span>
+                            <span class="info-value">{{user.lastName}}</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-content">
+                            <span class="info-label">Email address</span>
+                            <span class="info-value">{{user.email}}</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <span class="info-label">Phone number</span>
+                            <span class="info-value"></span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🏷️</div>
+                        <div class="info-content">
+                            <span class="info-label">Username</span>
+                            <span class="info-value">{{user.username}}</span>
+                        </div>
+                    </div>
+                    <!-- optional extra hint showing avatar label again - but all required fields present -->
+                    <div class="info-item">
+                        <div class="info-icon">🖼️</div>
+                        <div class="info-content">
+                            <span class="info-label">Profile image</span>
+                            <span class="info-value">{{user.image}} ✅</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simple account actions (purely ui, no inline style) -->
+                <div class="profile-actions">
+                    <button class="btn btn-outline" type="button">Edit profile</button>
+                    <button class="btn btn-primary" type="button">Save changes</button>
+                </div>
+            </div>
+        </div>
+        }
+        <!-- additional subtle note that all fields are shown using clean HTML/CSS, no inline style -->
+    </div>
+</div>

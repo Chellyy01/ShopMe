@@ -1,17 +1,6 @@
-<!-- ANNOUNCEMENT BAR -->
-<div class="announcement">
-    Summer Sale For All Swim Suits And Free Express Delivery – OFF 50%!
-    <a href="#">ShopNow</a>
-    <div class="lang">
-        English
-        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 4L6 8L10 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-    </div>
-</div>
-
 <!-- HEADER -->
 <header>
+
     <div class="logo">Exclusive</div>
     <nav>
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
@@ -37,7 +26,7 @@
                 </svg>
             </button>
         </form>
-        <button class="icon-btn">
+        <button class="icon-btn" routerLink="/wishlist">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path
@@ -56,5 +45,7 @@
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
             </svg>
         </button>
+
+        <button routerLink="/account">Account</button>
     </div>
 </header>

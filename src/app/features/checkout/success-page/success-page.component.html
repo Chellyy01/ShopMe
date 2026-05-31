@@ -1,0 +1,66 @@
+<div class="success">
+    @if(latestOrder) {
+    <div class="success-container">
+        <div class="success-card">
+            <!-- success icon (pure svg, no inline style) -->
+            <div class="success-icon">
+                <div class="check-mark">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+
+            <h1 class="success-title">Order placed successfully</h1>
+            <div class="decor-line"></div>
+            <div class="success-message">
+                Thank you for your purchase! Your order has been confirmed and will be shipped soon.
+            </div>
+
+            <!-- order info summary: Order ID + Total (plus optional extra for clarity) -->
+            <div class="order-details">
+                <div class="detail-row">
+                    <span class="detail-label">Order ID</span>
+                    <span class="detail-value order-id-badge">{{orderId}}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Order Date</span>
+                    <span class="detail-value">{{this.latestOrder.createdAt}}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Total amount</span>
+                    <span class="detail-value total-amount">${{this.latestOrder.total}}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Payment method</span>
+                    <span class="detail-value">Credit Card •••• </span>
+                </div>
+            </div>
+
+            <!-- Action buttons: Back to products, View orders - strictly no functionality -->
+            <div class="button-group">
+                <!-- Back to products button (static, no action) -->
+                <button class="btn btn-primary" aria-label="Back to products (demo)" (click)="onBack()">
+                    ← Back to products
+                </button>
+                <!-- View orders button later (static, no action) -->
+                <button class="btn btn-secondary" aria-label="View orders (demo)" (click)="onOrders()">
+                    View orders later
+                </button>
+            </div>
+
+            <!-- Additional note / static reassurance -->
+            <div class="info-note">
+                📦 A confirmation email has been sent to your inbox • This is a demo success page
+            </div>
+        </div>
+        <!-- subtle footer, no inline style -->
+        <div style="text-align: center; margin-top: 1.5rem; font-size: 0.7rem; color: #6c7f8f;">
+            <span>Secure checkout demo — static preview only, no order processing</span>
+        </div>
+    </div>
+    } @else {
+    <p>No Orders found</p>
+    }
+</div>

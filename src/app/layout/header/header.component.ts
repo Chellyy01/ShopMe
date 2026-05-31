@@ -4,6 +4,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { CartService } from '../../features/cart/services/cart.service';
 import { FormsModule } from '@angular/forms';
+import { WishlistService } from '../../features/wishlist/services/wishlist.service';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 export class HeaderComponent implements OnInit {
   public authService = inject(AuthService);
   cartService = inject(CartService);
+  wishListService = inject(WishlistService);
   searchedText: string = '';
   cartCount$ = this.cartService.cartCount$;
   router = inject(Router);
@@ -31,6 +33,7 @@ export class HeaderComponent implements OnInit {
       if (this.loadCartUserId === user.id) return;
 
       this.cartService.loadSavedCartForCurrentUser();
+      this.wishListService.loadWishList();
       this.loadCartUserId = user.id;
     });
   }

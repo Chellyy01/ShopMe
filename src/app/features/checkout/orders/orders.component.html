@@ -2,9 +2,9 @@
 
     <div class="orders-container">
         <div class="page-header">
-            <h1>📦 Orders overview</h1>
+            <h1><i class="fas fa-box icon-inline" aria-hidden="true"></i>Orders overview</h1>
             <div class="order-summary-badge">
-                ⚡ latest transactions
+                <i class="fas fa-bolt icon-inline" aria-hidden="true"></i>latest transactions
             </div>
         </div>
 
@@ -15,17 +15,17 @@
                 <div class="order-meta-row">
                     <div class="order-ids">
                         <div class="order-id">{{order.id}}</div>
-                        <div class="order-date">{{order.createdAt}}</div>
+                        <div class="order-date"><i class="fas fa-calendar icon-inline" aria-hidden="true"></i>{{order.createdAt}}</div>
                     </div>
                     <div class="order-totals">
                         <div class="total-amount">${{order.total}} <small>USD</small></div>
-                        <div class="items-count">📦 {{totalProducts(order)}} items</div>
+                        <div class="items-count"><i class="fas fa-box icon-inline" aria-hidden="true"></i>{{totalProducts(order)}} items</div>
                     </div>
                     <div class="status-badge status-delivered">{{order.status}}</div>
                 </div>
                 <div class="product-list-section">
                     <div class="product-list-title">
-                        🛍️ Products in order <span>{{totalProducts(order)}}</span>
+                        <i class="fas fa-bag-shopping icon-inline" aria-hidden="true"></i>Products in order <span>{{totalProducts(order)}}</span>
                     </div>
                     <ul class="product-items">
                         @for(product of order.products; track product) {

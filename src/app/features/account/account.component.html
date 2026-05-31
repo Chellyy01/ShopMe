@@ -18,8 +18,8 @@
                     <div class="full-name">{{user?.firstName}} {{user.lastName}}</div>
                     <div class="username">{{user?.username}}</div>
                     <div class="profile-meta">
-                        <span class="meta-badge">✨ member since 2023</span>
-                        <span class="meta-badge">🟢 active</span>
+                        <span class="meta-badge"><i class="fas fa-wand-magic-sparkles icon-inline" aria-hidden="true"></i>member since 2023</span>
+                        <span class="meta-badge"><i class="fas fa-circle meta-status-dot" aria-hidden="true"></i> active</span>
                     </div>
                 </div>
 
@@ -27,35 +27,35 @@
                 <div class="info-grid">
                     <!-- firstName + lastName as separate fields -->
                     <div class="info-item">
-                        <div class="info-icon">👤</div>
+                        <div class="info-icon"><i class="fas fa-user" aria-hidden="true"></i></div>
                         <div class="info-content">
                             <span class="info-label">First name</span>
                             <span class="info-value">{{user.firstName}}</span>
                         </div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">🧑‍🤝‍🧑</div>
+                        <div class="info-icon"><i class="fas fa-user-group" aria-hidden="true"></i></div>
                         <div class="info-content">
                             <span class="info-label">Last name</span>
                             <span class="info-value">{{user.lastName}}</span>
                         </div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">✉️</div>
+                        <div class="info-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
                         <div class="info-content">
                             <span class="info-label">Email address</span>
                             <span class="info-value">{{user.email}}</span>
                         </div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">📞</div>
+                        <div class="info-icon"><i class="fas fa-phone" aria-hidden="true"></i></div>
                         <div class="info-content">
                             <span class="info-label">Phone number</span>
                             <span class="info-value"></span>
                         </div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">🏷️</div>
+                        <div class="info-icon"><i class="fas fa-tag" aria-hidden="true"></i></div>
                         <div class="info-content">
                             <span class="info-label">Username</span>
                             <span class="info-value">{{user.username}}</span>
@@ -63,10 +63,10 @@
                     </div>
                     <!-- optional extra hint showing avatar label again - but all required fields present -->
                     <div class="info-item">
-                        <div class="info-icon">🖼️</div>
+                        <div class="info-icon"><i class="fas fa-image" aria-hidden="true"></i></div>
                         <div class="info-content">
                             <span class="info-label">Profile image</span>
-                            <span class="info-value">{{user.image}} ✅</span>
+                            <span class="info-value">{{user.image}} <i class="fas fa-circle-check" aria-hidden="true"></i></span>
                         </div>
                     </div>
                 </div>

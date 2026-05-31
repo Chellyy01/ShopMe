@@ -132,7 +132,6 @@
 }
 
 .info-icon {
-  font-size: 1.8rem;
   background: #eef3fa;
   width: 48px;
   height: 48px;
@@ -141,6 +140,18 @@
   justify-content: center;
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+.info-icon i {
+  font-size: 1.1rem;
+  color: #3b82f6;
+}
+
+.meta-status-dot {
+  font-size: 0.45rem;
+  color: #22c55e;
+  vertical-align: middle;
+  margin-right: 0.35rem;
 }
 
 .info-content {

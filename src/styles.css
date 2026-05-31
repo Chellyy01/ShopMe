@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global icon helpers */
+.icon-inline {
+  margin-right: 0.4em;
+}
+
+.icon-inline-after {
+  margin-left: 0.4em;
+}

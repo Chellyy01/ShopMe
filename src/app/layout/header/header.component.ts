@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   searchedText: string = '';
   cartCount$ = this.cartService.cartCount$;
   router = inject(Router);
+  menuOpen = false;
 
   //Persistant cart on reload
   loadCartUserId: number | null = null;
@@ -46,7 +47,16 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeMenu() {
+    this.menuOpen = false;
+  }
+
   logout() {
+    this.closeMenu();
     this.authService.logout();
     this.cartService.clearCart();
     this.router.navigate(['/']);

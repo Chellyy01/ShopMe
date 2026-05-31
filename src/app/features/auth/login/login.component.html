@@ -13,7 +13,7 @@
                 <div class="input-group">
                     <label for="login-username">Username</label>
                     <input type="text" id="login-username" formControlName="username"
-                        placeholder="e.g., johndoe or email@example.com" required autocomplete="username">
+                        placeholder="emilys" required autocomplete="username">
                     <!-- subtle extra helper text, purely for better UX, no inline styling -->
                     @if(loginForm.get('username')?.invalid && loginForm.get('username')?.touched) {
                     <small class="helper-text">Enter your unique username</small>
@@ -23,7 +23,7 @@
                 <!-- Password Field -->
                 <div class="input-group">
                     <label for="login-password">Password</label>
-                    <input type="password" id="login-password" formControlName="password" placeholder="••••••••"
+                    <input type="password" id="login-password" formControlName="password" placeholder="emilyspass"
                         required autocomplete="current-password">
                     @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
                     <small class="helper-text">Minimum 6 characters</small>
@@ -32,7 +32,7 @@
 
                 <!-- Action Buttons area -->
                 <div class="action-buttons">
-                    <button type="submit" class="login-btn">Log in →</button>
+                    <button type="submit" class="login-btn">Log in <i class="fas fa-arrow-right icon-inline-after" aria-hidden="true"></i></button>
                     <div class="secondary-links">
                         <a href="#" class="forgot-link">Forgot password?</a>
                         <a href="#" class="signup-link">Create new account</a>
@@ -41,7 +41,7 @@
 
                 <!-- Demo info: just a static hint about demo usage (no inline) -->
                 <div class="demo-note">
-                    <span>✨ Demo credentials</span> — any username / password (frontend only)
+                    <span><i class="fas fa-wand-magic-sparkles icon-inline" aria-hidden="true"></i>Demo credentials</span> — emilys / password (emilyspass)
                 </div>
             </form>
 

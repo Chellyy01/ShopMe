@@ -285,13 +285,30 @@ body {
   font-weight: 400;
 }
 
-/* responsive adjustments: exactly match original spacing and flow */
+/* responsive adjustments */
 @media (max-width: 1024px) {
   .footer {
     padding: 48px 32px 32px 32px;
   }
+
   .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 40px 28px;
+  }
+
+  .brand-col {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  .footer-col,
+  .app-col {
+    min-width: 0;
+  }
+
+  .subscribe-form {
+    max-width: 320px;
   }
 }
 
@@ -299,24 +316,89 @@ body {
   .footer {
     padding: 40px 24px 32px 24px;
   }
+
   .footer-grid {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 36px;
   }
+
   .brand-col,
   .footer-col,
   .app-col {
     width: 100%;
   }
+
+  .footer-logo {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .subscribe-text,
+  .support-title,
+  .account-title,
+  .quick-title,
+  .app-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
   .subscribe-form {
     max-width: 100%;
   }
+
+  .address-text {
+    max-width: none;
+  }
+
+  .app-save-text {
+    max-width: none;
+  }
+
   .store-badges {
     flex-direction: row;
     flex-wrap: wrap;
   }
+
   .footer-bottom {
     margin-top: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 32px 16px 24px 16px;
+  }
+
+  .footer-grid {
+    gap: 28px;
+  }
+
+  .footer-logo {
+    font-size: 22px;
+  }
+
+  .subscribe-text,
+  .support-title,
+  .account-title,
+  .quick-title,
+  .app-title {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .account-links li,
+  .quick-links li {
+    margin-bottom: 12px;
+  }
+
+  .store-badges {
+    flex-direction: column;
+  }
+
+  .app-store-badge,
+  .google-play-badge {
+    width: 100%;
+    max-width: 160px;
   }
 }
 

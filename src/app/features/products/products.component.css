@@ -1,6 +1,6 @@
 .products-toolbar {
   /* max-width: 1180px; */
-  margin: 3rem auto 0;
+  margin: 6rem auto 0;
   padding: 0 1rem;
 }
 
@@ -123,16 +123,51 @@
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: 2rem;
+  max-width: 1280px;
   margin: 2rem auto;
   padding: 0 1rem;
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  /* max-width: 1180px; 
- 
-   */
+}
+
+.loading-container,
+.error-message,
+.container > p {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem 1rem;
+  color: #6b7280;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #111827;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message {
+  padding: 1rem;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
 }
 .outsidetext {
   color: #fff;
@@ -197,6 +232,31 @@
   color: #9ca3af;
 }
 
+@media (max-width: 1024px) {
+  .container {
+    gap: 1.5rem;
+  }
+
+  .toolbar-heading h2 {
+    font-size: 1.45rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-toolbar {
+    margin-top: 5rem;
+  }
+
+  .container {
+    gap: 1.25rem;
+    margin: 1.5rem auto 2rem;
+  }
+
+  .pagination-bar {
+    margin-bottom: 3rem;
+  }
+}
+
 @media (max-width: 640px) {
   .toolbar-heading {
     align-items: start;
@@ -210,9 +270,55 @@
   .sort-control {
     align-items: stretch;
     flex-direction: column;
+    margin-inline: 1rem;
   }
 
   .select-wrap {
     min-width: 100%;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 0.75rem;
+  }
+
+  .pagination-bar {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0 0.75rem;
+  }
+
+  .page-btn {
+    min-width: 80px;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  .page-indicator {
+    min-width: 64px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-toolbar {
+    margin-top: 4.5rem;
+    padding: 0 0.75rem;
+  }
+
+  .toolbar-heading h2 {
+    font-size: 1.3rem;
+  }
+
+  .category-list {
+    gap: 0.5rem;
+  }
+
+  .category-pill {
+    padding: 0.55rem 0.8rem;
+    font-size: 0.85rem;
   }
 }

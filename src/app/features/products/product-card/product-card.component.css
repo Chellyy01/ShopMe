@@ -1,6 +1,6 @@
 /* ----- MODERN PRODUCT CARD (glassmorphism + softer edges, larger radius) ----- */
 .product-card {
-  max-width: 380px;
+  max-width: 100%;
   width: 100%;
   background-color: #ffffff;
   border-radius: 2rem;
@@ -180,39 +180,17 @@
 
 .star {
   font-size: 1.35rem;
-  display: inline-block;
   line-height: 1;
-  color: #e2e8f0;
-  position: relative;
   width: 1.25rem;
   text-align: center;
 }
 
 .star-filled {
   color: #f5b042;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
-/* half-star technique (elegant) */
-.star-half-empty {
-  position: relative;
-  display: inline-block;
-  width: 1.25rem;
-  overflow: hidden;
-  text-align: left;
+.rating-stars .star:not(.star-filled) {
   color: #e2e8f0;
-}
-
-.star-half-empty::before {
-  content: "★";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 50%;
-  overflow: hidden;
-  color: #f5b042;
-  font-size: 1.35rem;
-  line-height: 1;
 }
 
 .rating-value {
@@ -292,10 +270,17 @@
 }
 
 /* Responsive for mobile */
-@media (max-width: 480px) {
-  .product-card {
-    max-width: 340px;
+@media (max-width: 768px) {
+  .product-card:hover {
+    transform: none;
   }
+
+  .product-card:hover .card-image img {
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
   .card-content {
     padding: 1.2rem 1rem 1.4rem 1rem;
   }

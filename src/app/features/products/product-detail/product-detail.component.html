@@ -26,14 +26,19 @@
                 <div class="rating-section">
                     <div class="stars">
                         @for(star of [1,2,3,4, 5]; track star){
-                        <span class="star-filled">{{ star <= product.rating ? '★' : (star - product.rating < 1 &&
-                                product.rating % 1>= 0.5) ? '½' : '☆' }}</span>
+                        @if (star <= product.rating) {
+                        <i class="fas fa-star star-filled" aria-hidden="true"></i>
+                        } @else if (star - product.rating < 1 && product.rating % 1 >= 0.5) {
+                        <i class="fas fa-star-half-stroke star-filled" aria-hidden="true"></i>
+                        } @else {
+                        <i class="far fa-star star-empty" aria-hidden="true"></i>
+                        }
                         }
                     </div>
                     <span class="rating-value">{{product.rating}}</span>
                     <span class="review-count">({{product.reviews.length}} reviews)</span>
                     <span class="stock-status"
-                        [ngClass]="product.availabilityStatus === 'In Stock' ? 'in-stock' : 'low-stock'">✓{{product.availabilityStatus}}</span>
+                        [ngClass]="product.availabilityStatus === 'In Stock' ? 'in-stock' : 'low-stock'"><i class="fas fa-check icon-inline" aria-hidden="true"></i>{{product.availabilityStatus}}</span>
                 </div>
 
                 <div class="price-row">
@@ -107,15 +112,15 @@
                 <!-- Delivery & Return Info -->
                 <div class="info-row">
                     <div class="info-item">
-                        <span class="info-icon">🚚</span>
+                        <span class="info-icon"><i class="fas fa-truck" aria-hidden="true"></i></span>
                         <span>{{product.shippingInformation}}<br><strong>Enter postal code</strong></span>
                     </div>
                     <div class="info-item">
-                        <span class="info-icon">↩️</span>
+                        <span class="info-icon"><i class="fas fa-rotate-left" aria-hidden="true"></i></span>
                         <span>{{product.returnPolicy}}<br><strong>Free return policy</strong></span>
                     </div>
                     <div class="info-item">
-                        <span class="info-icon">🛡️</span>
+                        <span class="info-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></span>
                         <span>{{product.warrantyInformation}}<br><strong>Parts & labor</strong></span>
                     </div>
                 </div>
@@ -138,7 +143,7 @@
         <!-- Customer Reviews Section (from model) -->
         <div class="reviews-section">
             <div class="reviews-title">
-                <span>⭐ Customer Reviews</span>
+                <span><i class="fas fa-star icon-inline" aria-hidden="true"></i>Customer Reviews</span>
             </div>
 
             @for(review of product.reviews; track review){
@@ -152,8 +157,12 @@
                     <span class="review-date">{{review.date}}</span>
                 </div>
                 @for(star of [1,2,3,4, 5]; track star){
-                <span class="review-stars">{{ star <= review.rating ? '★' : '☆' }}</span>
-                        }
+                @if (star <= review.rating) {
+                <i class="fas fa-star review-stars" aria-hidden="true"></i>
+                } @else {
+                <i class="far fa-star review-stars" aria-hidden="true"></i>
+                }
+                }
                         <div class="review-comment">{{review.comment}}</div>
             </div>
             }
@@ -162,7 +171,7 @@
 
         <!-- Related Items Section (inspired by reference image) -->
         <div class="related-section">
-            <h2 class="related-title">🔥 You May Also Like</h2>
+            <h2 class="related-title"><i class="fas fa-fire icon-inline" aria-hidden="true"></i>You May Also Like</h2>
             <div class="related-grid">
                 <!-- Related Product 1 -->
                 @for(related of relatedProducts; track related){
@@ -189,8 +198,12 @@
                     </div>
                     <div class="related-rating">
                         @for(star of [1,2,3,4, 5]; track star){
-                        <span class="star">{{ star <= related.rating ? '★' : '☆' }}</span>
-                                }
+                        @if (star <= related.rating) {
+                        <i class="fas fa-star star" aria-hidden="true"></i>
+                        } @else {
+                        <i class="far fa-star star" aria-hidden="true"></i>
+                        }
+                        }
                                 <span>({{related.reviews.length}})</span>
                     </div>
 

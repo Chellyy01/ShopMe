@@ -4,20 +4,20 @@
         <!-- EMPTY CART STATE  -->
         <div style="margin-top: 3rem; border-top: 2px solid #e2e8f0; padding-top: 2rem;">
             <div style="margin-bottom: 1rem;">
-                <h2 style="font-size: 1.3rem; font-weight: 500; color: #334155;">📦 Empty cart
+                <h2 style="font-size: 1.3rem; font-weight: 500; color: #334155;"><i class="fas fa-box-open icon-inline" aria-hidden="true"></i>Empty cart
                 </h2>
             </div>
             <div class="empty-cart-state">
-                <div class="empty-icon">🛍️</div>
+                <div class="empty-icon"><i class="fas fa-bag-shopping" aria-hidden="true"></i></div>
                 <h3>Your cart feels light</h3>
                 <p>Add some amazing products to get started.</p>
-                <div class="shop-link" routerLink="/products">Continue shopping →</div>
+                <div class="shop-link" routerLink="/products">Continue shopping <i class="fas fa-arrow-right icon-inline-after" aria-hidden="true"></i></div>
             </div>
         </div>
         } @else {
 
         <div class="cart-header">
-            <h1>🛒 Your Cart</h1>
+            <h1><i class="fas fa-cart-shopping icon-inline" aria-hidden="true"></i>Your Cart</h1>
             <span>{{cartCount$ | async}} items</span>
         </div>
 
@@ -43,7 +43,7 @@
                     </div>
                     <div class="item-actions">
                         <div class="item-subtotal">${{product.quantity * product.price}}</div>
-                        <div class="remove-btn" (click)="removeFromCart(product.id)">✕ Remove</div>
+                        <div class="remove-btn" (click)="removeFromCart(product.id)"><i class="fas fa-xmark icon-inline" aria-hidden="true"></i>Remove</div>
                     </div>
                 </div>
                 }
@@ -65,8 +65,8 @@
                         <span>${{(cartTotal$ | async)?.toFixed(2)}}</span>
                     </div>
                     <hr />
-                    <div class="clear-btn" (click)="clearCart()">🗑️ Clear cart</div>
-                    <div class="checkout-btn" routerLink="/checkout">Proceed to checkout →</div>
+                    <div class="clear-btn" (click)="clearCart()"><i class="fas fa-trash icon-inline" aria-hidden="true"></i>Clear cart</div>
+                    <div class="checkout-btn" routerLink="/checkout">Proceed to checkout <i class="fas fa-arrow-right icon-inline-after" aria-hidden="true"></i></div>
                 </div>
             </div>
         </div>

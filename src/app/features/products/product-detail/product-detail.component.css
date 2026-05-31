@@ -22,7 +22,7 @@
 /* Main container */
 .product-detail-container {
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 3rem auto;
   background: #ffffff;
   border-radius: 2rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.12);
@@ -128,41 +128,15 @@
   gap: 0.2rem;
 }
 
-.star-filled {
+.star-filled,
+.stars .fa-star,
+.stars .fa-star-half-stroke {
   color: #ffb13c;
   font-size: 1.2rem;
 }
 
-.star-half {
-  position: relative;
-  display: inline-block;
-  width: 1.2rem;
-  overflow: hidden;
-  color: #ffb13c;
-  font-size: 1.2rem;
-}
-
-.star-half::before {
-  content: "★";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 50%;
-  overflow: hidden;
-  color: #ffb13c;
-}
-
-.star-half::after {
-  content: "★";
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 50%;
-  overflow: hidden;
-  color: #e0e4e9;
-}
-
-.star-empty {
+.star-empty,
+.stars .fa-regular.fa-star {
   color: #e0e4e9;
   font-size: 1.2rem;
 }
@@ -360,7 +334,12 @@
 }
 
 .info-icon {
-  font-size: 1.3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  font-size: 1.1rem;
+  color: #2563eb;
 }
 
 .info-link {
@@ -435,8 +414,7 @@
 .review-stars {
   color: #ffb13c;
   font-size: 0.85rem;
-  letter-spacing: 1px;
-  margin: 0.3rem 0;
+  margin: 0 0.05rem;
 }
 
 .review-comment {
@@ -527,6 +505,16 @@
   gap: 0.3rem;
   margin-top: 0.5rem;
   font-size: 0.7rem;
+}
+
+.related-rating .star,
+.related-rating .fa-star {
+  color: #ffb13c;
+  font-size: 0.75rem;
+}
+
+.related-rating .fa-regular.fa-star {
+  color: #e0e4e9;
 }
 
 /* Tags */

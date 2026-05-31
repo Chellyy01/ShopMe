@@ -38,8 +38,12 @@
             <div class="rating-stars">
                 <!-- 4 full stars -->
                 @for(star of [1,2,3,4, 5]; track star){
-                <span class="star star-filled">{{ star <= product.rating ? '★' : '☆' }}</span>
-                        }
+                @if (star <= product.rating) {
+                <i class="fas fa-star star star-filled" aria-hidden="true"></i>
+                } @else {
+                <i class="far fa-star star" aria-hidden="true"></i>
+                }
+                }
             </div>
             <span class="rating-value">{{ product.rating }}</span>
             <!-- <span class="rating-count">({{ product.reviewCount }} reviews)</span> -->

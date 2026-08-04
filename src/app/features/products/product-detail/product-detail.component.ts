@@ -4,6 +4,7 @@ import { Product } from '../product.model';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../cart/services/cart.service';
+import { ToastService } from '../../../toast.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -17,6 +18,7 @@ export class ProductDetailComponent implements OnInit {
   relatedProducts: Product[] = [];
   productService = inject(ProductService);
   cartService = inject(CartService);
+  toastService = inject(ToastService);
   activeRoute = inject(ActivatedRoute);
   isloading: boolean = true;
   errorMessage: string = '';
@@ -73,8 +75,8 @@ export class ProductDetailComponent implements OnInit {
     return product.price - (product.discountPercentage / 100) * product.price;
   }
 
-  onAddToCartClicked(product: any) {
+  onAddToCartClicked(product: Product) {
     this.cartService.addToCart(product, 1);
-    console.log('Added to cart:', product);
+    this.toastService.show(`${product.title} added to cart`);
   }
 }

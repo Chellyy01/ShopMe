@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartService } from '../cart/services/cart.service';
 import { AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { ToastService } from '../../toast.service';
 
 @Component({
   selector: 'app-checkout',
@@ -17,6 +18,7 @@ export class CheckoutComponent {
   cart$ = this.cartService.cart$;
   cartTotal$ = this.cartService.cartTotal$;
   router = inject(Router);
+  toastService = inject(ToastService);
 
   checkoutForm = this.fb.group({
     fullName: ['', Validators.required],
@@ -59,6 +61,7 @@ export class CheckoutComponent {
     this.cartService.clearCart();
     this.cartService.removeSavedCartForCurrentUser();
     this.checkoutForm.reset();
+    this.toastService.show('Order placed successfully');
 
     this.router.navigate(['/success']);
   }

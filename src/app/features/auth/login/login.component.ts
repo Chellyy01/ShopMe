@@ -4,6 +4,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../../cart/services/cart.service';
 import { WishlistService } from '../../wishlist/services/wishlist.service';
+import { ToastService } from '../../../toast.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent {
   authservice = inject(AuthService);
   cartService = inject(CartService);
   wishListService = inject(WishlistService);
+  toastService = inject(ToastService);
   router = inject(Router);
   activeRoute = inject(ActivatedRoute);
   isLoading: boolean = false;
@@ -30,6 +32,7 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.invalid) {
       this.errorMessage = 'Please fill in all required fields with valid data.';
+      this.toastService.show(this.errorMessage, 'info');
       return;
     }
     this.isLoading = true;
@@ -48,7 +51,9 @@ export class LoginComponent {
       error: (err) => {
         this.isLoading = false;
         this.errorMessage =
-          err.error?.message || 'Login failed. Please try again.';
+          err.error?.message ||
+          'That username or password does not look right. Please try again.';
+        this.toastService.show(this.errorMessage, 'error');
       },
     });
   }

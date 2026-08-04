@@ -1,11 +1,10 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Product } from '../product.model';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../cart/services/cart.service';
-import { CartProduct } from '../../cart/model/cart.model';
 import { WishlistService } from '../../wishlist/services/wishlist.service';
-import { WishListItem } from '../../wishlist/services/wishlist.mode';
+import { ToastService } from '../../../toast.service';
 
 @Component({
   selector: 'app-product-card',
@@ -22,12 +21,27 @@ export class ProductCardComponent {
 
   cartService = inject(CartService);
   wishListService = inject(WishlistService);
+  toastService = inject(ToastService);
 
-  onAddToCartClicked(product: any) {
+  onAddToCartClicked(product: Product) {
     this.cartService.addToCart(product, 1);
+    this.toastService.show(`${product.title} added to cart`);
   }
 
   addToWishList(product: Product) {
+    if (this.wishListService.isInWishList(product.id)) {
+      this.toastService.show(
+        `${product.title} is already in your wishlist`,
+        'info',
+      );
+      return;
+    }
+
     this.wishListService.addToWishList(product);
+    this.toastService.show(`${product.title} added to wishlist`);
+  }
+
+  isInWishList(productId: number) {
+    return this.wishListService.isInWishList(productId);
   }
 }

@@ -3,6 +3,7 @@ import { inject } from '@angular/core';
 import { CartService } from './services/cart.service';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ToastService } from '../../toast.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,13 +14,22 @@ import { RouterLink } from '@angular/router';
 })
 export class CartComponent {
   cartService = inject(CartService);
+  toastService = inject(ToastService);
 
   cart$ = this.cartService.cart$;
   cartCount$ = this.cartService.cartCount$;
   cartTotal$ = this.cartService.cartTotal$;
 
   removeFromCart(productId: number) {
+    const product = this.cartService.cartbehaviorSubject.value?.products.find(
+      (item) => item.id === productId,
+    );
+
     this.cartService.removeFromCart(productId);
+    if (product) {
+      this.toastService.show(`${product.title} removed from cart`, 'info');
+    }
+
     if (this.cartService.cartbehaviorSubject.value?.products.length === 0) {
       this.cartService.clearCart();
     }
@@ -27,6 +37,7 @@ export class CartComponent {
 
   clearCart() {
     this.cartService.clearCart();
+    this.toastService.show('Cart cleared', 'info');
   }
 
   onMinusClicked(productId: number) {

@@ -17,8 +17,8 @@
     <div class="header-collapse">
         <nav>
             <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Home</a>
-            <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a>
-            <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a>
+            <!-- <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a>
+            <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a> -->
             @if((authService.currentUser$ | async); as user) {
             <span class="welcome">Welcome, {{ user.firstName }}</span>
             <button type="button" (click)="logout()">Logout</button>

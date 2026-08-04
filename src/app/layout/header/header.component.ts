@@ -59,6 +59,7 @@ export class HeaderComponent implements OnInit {
     this.closeMenu();
     this.authService.logout();
     this.cartService.clearCart();
+    this.wishListService.loadWishList();
     this.router.navigate(['/']);
   }
 }

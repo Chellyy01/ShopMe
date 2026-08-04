@@ -10,21 +10,27 @@ import { Product } from '../../products/product.model';
   providedIn: 'root',
 })
 export class WishlistService {
-  constructor() {}
   wishlistproductBehSubject = new BehaviorSubject<Product[]>([]);
   wishlistproduct$ = this.wishlistproductBehSubject.asObservable();
 
   authService = inject(AuthService);
+
+  constructor() {
+    this.loadWishList();
+  }
 
   isInWishList(id: number) {
     const currentWishList = this.wishlistproductBehSubject.value;
     return currentWishList.some((p) => p.id === id);
   }
 
-  addToWishList(product: Product) {
+  getStorageKey() {
     const currentUser = this.authService.currentUserBehaviorSubject.value;
-    const key = `wishlist_${currentUser?.id}`;
-    if (!currentUser) return;
+    return currentUser ? `wishlist_${currentUser.id}` : 'wishlist_guest';
+  }
+
+  addToWishList(product: Product) {
+    const key = this.getStorageKey();
 
     const currentWishList = this.wishlistproductBehSubject.value;
 
@@ -37,8 +43,7 @@ export class WishlistService {
   }
 
   removeFromWishList(id: number) {
-    const currenUser = this.authService.currentUserBehaviorSubject.value;
-    const key = `wishlist_${currenUser?.id}`;
+    const key = this.getStorageKey();
     const currentWishList = this.wishlistproductBehSubject.value;
     const newWishList = currentWishList.filter((p) => p.id !== id);
 
@@ -47,10 +52,12 @@ export class WishlistService {
   }
 
   loadWishList() {
-    const currentUser = this.authService.currentUserBehaviorSubject.value;
-    const key = `wishlist_${currentUser?.id}`;
+    const key = this.getStorageKey();
     const savedWishLIst = localStorage.getItem(key);
-    if (!savedWishLIst) return;
+    if (!savedWishLIst) {
+      this.wishlistproductBehSubject.next([]);
+      return;
+    }
 
     const parsedWishList = JSON.parse(savedWishLIst) as Product[];
     this.wishlistproductBehSubject.next(parsedWishList);

@@ -127,6 +127,26 @@
   padding: 1.4rem 1.3rem 1.6rem 1.3rem;
 }
 
+.wishlist-btn {
+  color: #1e293b;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.wishlist-btn.saved {
+  color: #e11d48;
+}
+
+.wishlist-btn.saved svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.wishlist-btn:hover {
+  transform: scale(1.05);
+}
+
 /* product title - modern weight */
 .product-title {
   font-size: 1.5rem;
